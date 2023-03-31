@@ -8,6 +8,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", home)
+	http.HandleFunc("/contact", contact)
 	http.HandleFunc("/features", features)
 	http.HandleFunc("/docs", docs)
 	http.Handle("/resource/", http.StripPrefix("/resource/", http.FileServer(http.Dir("assets"))))
@@ -50,4 +51,15 @@ func docs(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, nil)
+}
+
+func contact(w http.ResponseWriter, r *http.Request) {
+
+	//Method 1
+	name := r.FormValue("name")
+	company := r.FormValue("company")
+	email := r.FormValue("email")
+
+	fmt.Printf(" Successfully submitted!\r\n\r\n Your name is: %s\r\n Your company is: %s\r\n Your email is: %s", name, company, email)
+	fmt.Fprintf(w, " Successfully submitted!\r\n\r\n Your name is: %s\r\n Your company is: %s\r\n Your email is: %s", name, company, email)
 }
