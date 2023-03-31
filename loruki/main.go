@@ -55,11 +55,19 @@ func docs(w http.ResponseWriter, r *http.Request) {
 
 func contact(w http.ResponseWriter, r *http.Request) {
 
-	//Method 1
-	name := r.FormValue("name")
-	company := r.FormValue("company")
-	email := r.FormValue("email")
+	//Method-1
+	// name := r.FormValue("name")
+	// company := r.FormValue("company")
+	// email := r.FormValue("email")
 
-	fmt.Printf(" Successfully submitted!\r\n\r\n Your name is: %s\r\n Your company is: %s\r\n Your email is: %s", name, company, email)
-	fmt.Fprintf(w, " Successfully submitted!\r\n\r\n Your name is: %s\r\n Your company is: %s\r\n Your email is: %s", name, company, email)
+	// fmt.Printf(" Successfully submitted!\r\n\r\n Your name is: %s\r\n Your company is: %s\r\n Your email is: %s", name, company, email)
+	// fmt.Fprintf(w, " Successfully submitted!\r\n\r\n Your name is: %s\r\n Your company is: %s\r\n Your email is: %s", name, company, email)
+
+	//Method-2 (Recommended)
+	r.ParseForm()
+	for key, value := range r.Form {
+		fmt.Printf("Your %s is: %s\r\n", key, value[0])
+	}
+	fmt.Fprintf(w, "Successfully submitted!")
+
 }
