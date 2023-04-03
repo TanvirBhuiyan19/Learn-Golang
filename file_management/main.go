@@ -29,15 +29,21 @@ func main() {
 	// isError := createFile(fileName, content)
 	// fmt.Println(isError)
 
-	fileInfo, err := os.Stat("Tanvir.txt")
+	// fileInfo, err := os.Stat("Tanvir.txt")
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// }
+
+	// fmt.Println(fileInfo.IsDir())
+	// fmt.Println(fileInfo.ModTime().Date())
+	// fmt.Println(fileInfo.Name())
+	// fmt.Println(fileInfo.Size())
+
+	//How to create a directory
+	err := os.Mkdir("New Folder", 0777)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-
-	fmt.Println(fileInfo.IsDir())
-	fmt.Println(fileInfo.ModTime().Date())
-	fmt.Println(fileInfo.Name())
-	fmt.Println(fileInfo.Size())
 
 }
 
