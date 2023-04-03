@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 )
@@ -13,22 +12,33 @@ func main() {
 	// }
 	// fmt.Println(dir)
 
-	var fileName string
-	fmt.Printf("Enter File Name : ")
-	fmt.Scanf("%s \n", &fileName)
+	// var fileName string
+	// fmt.Printf("Enter File Name : ")
+	// fmt.Scanf("%s \n", &fileName)
 
-	//===================== Single Line Input ===============================//
-	// Create a new scanner to read from standard input
-	scanner := bufio.NewScanner(os.Stdin)
-	// Prompt the user for input
-	fmt.Print("Enter a line: ")
-	// Read a line of input
-	scanner.Scan()
-	content := scanner.Text()
-	//===================== Single Line Input ===============================//
+	// //===================== Single Line Input ===============================//
+	// // Create a new scanner to read from standard input
+	// scanner := bufio.NewScanner(os.Stdin)
+	// // Prompt the user for input
+	// fmt.Print("Enter a line: ")
+	// // Read a line of input
+	// scanner.Scan()
+	// content := scanner.Text()
+	// //===================== Single Line Input ===============================//
 
-	isError := createFile(fileName, content)
-	fmt.Println(isError)
+	// isError := createFile(fileName, content)
+	// fmt.Println(isError)
+
+	fileInfo, err := os.Stat("Tanvir.txt")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	fmt.Println(fileInfo.IsDir())
+	fmt.Println(fileInfo.ModTime().Date())
+	fmt.Println(fileInfo.Name())
+	fmt.Println(fileInfo.Size())
+
 }
 
 func createFile(fileName, content string) bool {
