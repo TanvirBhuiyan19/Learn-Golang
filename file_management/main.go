@@ -3,13 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func main() {
-	// dir, err := os.Getwd()
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// }
+	dir, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	// fmt.Println(dir)
 
 	// var fileName string
@@ -40,10 +41,30 @@ func main() {
 	// fmt.Println(fileInfo.Size())
 
 	//How to create a directory
-	err := os.Mkdir("New Folder", 0777)
+	// err := os.Mkdir("New Folder", 0777)
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// }
+
+	path := filepath.Base(dir)
+	relativePath := filepath.Join("New Folder")
+	absolutePath, err := filepath.Abs("New Folder")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+	newPath := filepath.Join(absolutePath, "..", "..", "New Folder")
+	err = os.Mkdir(newPath, 777)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	fmt.Println(path)
+	fmt.Println(relativePath)
+	fmt.Println(absolutePath)
+	fmt.Println(newPath)
+
+	//Rename existing folder
+	// os.Rename(absolutePath, `New Folder 2`)
 
 }
 
